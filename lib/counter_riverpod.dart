@@ -54,7 +54,17 @@ class MyHomePage extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(counterProvider.notifier).state++,
+        onPressed: () {
+          final before = ref.read(counterProvider);
+          debugPrint('---------------');
+          debugPrint('更新前は $before');
+
+          //ref.read(counterProvider.notifier).update((state) => state + 1);     
+          ref.read(counterProvider.notifier).state++;
+
+          final after = ref.read(counterProvider);
+          debugPrint('更新後は $after');
+          },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

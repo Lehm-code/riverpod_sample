@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  const app = MaterialApp(home: MyApp());
+
+  const scope = ProviderScope(child: app);
+
+  runApp(scope);
 }
 
 // カウンターの状態プロバイダ

@@ -25,6 +25,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
+  freezed:
   riverpod_generator:
 
 
