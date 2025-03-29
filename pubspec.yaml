@@ -15,11 +15,8 @@ dependencies:
   flutter_riverpod:
   riverpod_annotation:
   freezed_annotation:
-
-
-
-
   cupertino_icons: ^1.0.8
+  shared_preferences: ^2.5.2
 
 dev_dependencies:
   flutter_test:
