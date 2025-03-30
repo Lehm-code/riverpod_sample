@@ -4,22 +4,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() {
   runApp(
     // 状態管理する範囲を指定
-    const ProviderScope(
+    ProviderScope(
+      overrides: [
+        overrideProvider.overrideWith((ref) {
+          return 30;
+        }),
+      ],
       child: MyApp()
     )
   );
 }
 
 // カウンターの状態プロバイダを生成と初期値の代入
-final counterProvider = StateProvider<int>((ref) => 0);
-// final counterProvider = StateProvider<int>((ref){
-//   return 0 ;
-// });
+final counterProvider = StateProvider<int>((ref){
+  return 0 ;
+});
 final doubleProvider = StateProvider<int>((ref) => 0);
 final doubleProvider2 = Provider<int>((ref){
   final count = ref.watch(counterProvider);
   return count * 2 ;
 });
+final overrideProvider = StateProvider<int>((ref) => 0);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -49,6 +54,7 @@ class MyHomePage extends ConsumerWidget {
     final doubleCounter = ref.watch(doubleProvider);
     final doubleCounter2 = ref.watch(doubleProvider2);
     final doubleCounter3 = counter *2;
+    final overrideCounter = ref.watch(overrideProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -77,6 +83,11 @@ class MyHomePage extends ConsumerWidget {
             const Text('最上部の数字の2倍だよ（class内の定義）'),
             Text(
               '$doubleCounter3',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const Text('オーバーライドのテスト'),
+            Text(
+              '$overrideCounter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
