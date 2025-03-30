@@ -12,6 +12,9 @@ void main() {
 
 // カウンターの状態プロバイダを生成と初期値の代入
 final counterProvider = StateProvider<int>((ref) => 0);
+// final counterProvider = StateProvider<int>((ref){
+//   return 0 ;
+// });
 final doubleProvider = StateProvider<int>((ref) => 0);
 final doubleProvider2 = Provider<int>((ref){
   final count = ref.watch(counterProvider);
@@ -56,7 +59,7 @@ class MyHomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('ボタンを押すと増えるよ'),
+            const Text('ボタンを押すと 1 増えるよ'),
             Text(
               '$counter',
               style: Theme.of(context).textTheme.headlineMedium,
