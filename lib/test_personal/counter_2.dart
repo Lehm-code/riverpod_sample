@@ -13,10 +13,10 @@ void main() {
 // カウンターの状態プロバイダを生成と初期値の代入
 final counterProvider = StateProvider<int>((ref) => 0);
 final doubleProvider = StateProvider<int>((ref) => 0);
-// final doubleProvider2 = Provider<int>((ref){
-//   final count = ref.watch(counterProvider);
-//   return count * 2 ;
-// });
+final doubleProvider2 = Provider<int>((ref){
+  final count = ref.watch(counterProvider);
+  return count * 2 ;
+});
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -44,7 +44,8 @@ class MyHomePage extends ConsumerWidget {
     // プロバイダから状態を取得
     final counter = ref.watch(counterProvider);
     final doubleCounter = ref.watch(doubleProvider);
-    // final doubleCounter2 = ref.watch(doubleProvider2);
+    final doubleCounter2 = ref.watch(doubleProvider2);
+    final doubleCounter3 = counter *2;
 
     return Scaffold(
       appBar: AppBar(
@@ -60,15 +61,21 @@ class MyHomePage extends ConsumerWidget {
               '$counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const Text('上の数字の2倍だよ'),
+            const Text('上の数字の遅れた2倍だよ'),
             Text(
               '$doubleCounter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            // Text(
-            //   '$doubleCounter2',
-            //   style: Theme.of(context).textTheme.headlineMedium,
-            // ),
+            const Text('最上部の数字の2倍だよ（Provider内の定義）'),
+            Text(
+              '$doubleCounter2',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const Text('最上部の数字の2倍だよ（class内の定義）'),
+            Text(
+              '$doubleCounter3',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ],
         ),
       ),
