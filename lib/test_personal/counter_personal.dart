@@ -10,7 +10,7 @@ void main() {
           return 30;
         }),
       ],
-      child: MyApp()
+      child: const MyApp()
     )
   );
 }
