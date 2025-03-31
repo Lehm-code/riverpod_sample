@@ -7,7 +7,7 @@ void main() {
 
 // カウンターの状態プロバイダ
 final counterProvider =
-  StateNotifierProvider<CounterNotifier, int>((ref) => CounterNotifier());
+    StateNotifierProvider<CounterNotifier, int>((ref) => CounterNotifier());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -58,12 +58,12 @@ class MyHomePage extends ConsumerWidget {
         onPressed: () {
           final before = ref.read(counterProvider);
           debugPrint('---------------');
-          debugPrint('更新前は $before');    
+          debugPrint('更新前は $before');
           //ref.read(counterProvider.notifier).countUp();
           ref.read(counterProvider.notifier).countDouble();
           final after = ref.read(counterProvider);
           debugPrint('更新後は $after');
-          },
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
@@ -72,11 +72,16 @@ class MyHomePage extends ConsumerWidget {
 }
 
 class CounterNotifier extends StateNotifier<int> {
-  CounterNotifier() : super(1);
+  CounterNotifier() : super(5);
   void countUp() {
     state++;
   }
+
   void countDouble() {
     state = state * 2;
+  }
+
+  void countReset() {
+    state = 0;
   }
 }
